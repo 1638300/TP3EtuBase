@@ -29,7 +29,6 @@ namespace TP3
     Color blocCouleur;
     mouvement deplacement;
 
-
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
     /// du formulaire principal.
@@ -86,7 +85,6 @@ namespace TP3
         }
       }
     }
-
     void run()
     {
       InitialiserPartie();
@@ -97,6 +95,11 @@ namespace TP3
       ligneCourante = 0;
       GererTypeBlocs();
       GererCreationBlocDansJeu();
+    }
+    void MettreFinAPartie()
+    {
+      lblFinPartie.Visible = true;
+
     }
     void MettreAJourPositionBlocDansTabLogique()
     {
@@ -238,9 +241,16 @@ namespace TP3
         positionXRelative[2] = 1;
         positionXRelative[3] = 2;
       }
-      MettreAJourPositionBlocDansTabLogique();
-      GererCouleurBloc();
-      AfficherBloc();
+      if(VerifierSiGenerationPossible())
+      {
+        MettreAJourPositionBlocDansTabLogique();
+        GererCouleurBloc();
+        AfficherBloc();
+      }
+      else
+      {
+
+      }
     }
     void GererTypeBlocs()
     {
@@ -293,6 +303,19 @@ namespace TP3
 
       MettreAJourPositionBlocDansTabLogique();
       AfficherBloc();
+    }
+    bool VerifierSiGenerationPossible()
+    {
+      bool retour = true;
+
+      for (int i = 0; i < positionXRelative.Length; i++)
+      {
+        if (tabLogique[ligneCourante + positionYRelative[i], colonneCourante + positionXRelative[i]] == TypeBloc.Gele)
+        {
+          retour = false;
+        }
+      }
+      return retour;
     }
 
     #region Code à développer
@@ -347,6 +370,11 @@ namespace TP3
       {
         GererDeplacement();
       }
+    }
+
+    private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Application.Exit();
     }
   }
   enum TypeBloc
