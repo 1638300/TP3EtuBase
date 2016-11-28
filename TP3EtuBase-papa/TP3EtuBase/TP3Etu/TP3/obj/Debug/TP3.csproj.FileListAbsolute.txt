@@ -1,0 +1,18 @@
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.exe.config
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.exe
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.pdb
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.csprojResolveAssemblyReference.cache
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.Form1.resources
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.Properties.Resources.resources
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.exe
+C:\Users\YG\Desktop\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.pdb
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.exe.config
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.exe
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.pdb
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.csprojResolveAssemblyReference.cache
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.Form1.resources
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.Properties.Resources.resources
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.exe
+C:\Users\Alek Savard\Desktop\TP3EtuBase-papa\TP3EtuBase\TP3Etu\TP3\bin\Debug\TP3.pdb
