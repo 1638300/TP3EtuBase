@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 
+
 namespace TP3
 {
   public partial class Form1 : Form
@@ -229,31 +230,7 @@ namespace TP3
       retour = TypeBloc.Carre; //(TypeBloc)rnd.Next(2,9);
       return retour;
     }
-    mouvement ObtenirTypeMouvement(ConsoleKey deplacement)
-    {
-      mouvement retour = mouvement.Rien;
-      if (deplacement == ConsoleKey.DownArrow)
-      {
-        retour = mouvement.Bas;
-      }
-      if (deplacement  == ConsoleKey.RightArrow)
-      {
-        retour = mouvement.Droite;
-      }
-      if (deplacement == ConsoleKey.LeftArrow)
-      {
-        retour = mouvement.Gauche;
-      }
-      if (deplacement == ConsoleKey.Z)
-      {
-        retour = mouvement.RotationAntihoraire;
-      }
-      if (deplacement == ConsoleKey.X)
-      {
-        retour = mouvement.RotationHoraire;
-      }
-      return retour;
-    }
+
     #region Code à développer
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -278,6 +255,35 @@ namespace TP3
 
     #endregion
 
+    private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+    {
+      mouvement deplacement = mouvement.Rien;
+      if (e.KeyChar == 's')
+      {
+        deplacement = mouvement.Bas;
+      }
+      else if (e.KeyChar == 'd')
+      {
+        deplacement = mouvement.Droite;
+      }
+      else if (e.KeyChar == 'a')
+      {
+        deplacement = mouvement.Gauche;
+      }
+      else if (e.KeyChar == 'n')
+      {
+        deplacement = mouvement.RotationAntihoraire;
+      }
+      else if (e.KeyChar == 'm')
+      {
+        deplacement = mouvement.RotationHoraire;
+      }
+
+      if(deplacement != mouvement.Rien)
+      {
+
+      }
+    }
   }
   enum TypeBloc
   {
