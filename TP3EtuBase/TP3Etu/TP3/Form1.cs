@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace TP3
 {
   public partial class Form1 : Form
@@ -15,7 +16,15 @@ namespace TP3
     
     // Représentation visuelles du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
-    
+    const int nbLignes = 20;
+    const int nbColonnes = 10;
+    int[] positionYRelative = new int[4];
+    int[] positionXRelative = new int[4];
+    int colonneCourante;
+    int ligneCourante;
+    Random rnd = new Random();
+    TypeBloc[,] tabLogique = new TypeBloc[nbLignes, nbColonnes];
+
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
     /// du formulaire principal.
@@ -26,7 +35,8 @@ namespace TP3
     {
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
-      InitialiserSurfaceDeJeu(20,10);
+      InitialiserSurfaceDeJeu(nbLignes,nbColonnes);
+      run();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -50,7 +60,7 @@ namespace TP3
           newPictureBox.Margin = new Padding(0, 0, 0, 0);
           newPictureBox.BorderStyle = BorderStyle.FixedSingle;
           newPictureBox.Dock = DockStyle.Fill;
-
+          
           // Assignation de la représentation visuelle.
           toutesImagesVisuelles[i, j] = newPictureBox;
           // Ajout dynamique du PictureBox créé dans la grille de mise en forme.
@@ -60,11 +70,190 @@ namespace TP3
       }
     }
     #endregion
+    
+    void InitialiserTableau()
+    {
+      for (int i = 0; i < tabLogique.GetLength(0); i++)
+      {
+        for (int j = 0; j < tabLogique.GetLength(1); j++)
+        {
+          tabLogique[i,j] = TypeBloc.None;
+        }
+      }
+    }
 
-
-
-
-
+    void run()
+    {
+      InitialiserPartie();
+      ConsoleKey actionJoueur = Console.ReadKey().Key;
+    }
+    void InitialiserPartie()
+    {
+      colonneCourante = tabLogique.GetLength(1) / 2 -1;
+      ligneCourante = 0;
+      GererCreationBlocDansJeu(GererTypeBlocs());
+    }
+    void MettreAJourPositionBlocDansTabLogique(TypeBloc bloc)
+    {
+      for (int i = 0; i < positionXRelative.Length; i++)
+      {
+        tabLogique[ligneCourante + positionYRelative[i], colonneCourante + positionXRelative[i]] = bloc;  
+      }
+    }
+    void AfficherBloc(Color blocCouleur)
+    {
+      for (int i = 0; i < positionXRelative.Length; i++)
+      {
+        toutesImagesVisuelles[ligneCourante + positionYRelative[i], colonneCourante + positionXRelative[i]].BackColor = blocCouleur; 
+      }
+    }
+    Color GererCouleurBloc(TypeBloc bloc)
+    {
+      Color retour = Color.Black;
+      if (bloc == TypeBloc.Carre)
+      {
+        retour = Color.Yellow;
+      }
+      if (bloc == TypeBloc.Ligne)
+      {
+        retour = Color.Turquoise;
+      }
+      if (bloc == TypeBloc.T)
+      {
+        retour = Color.Purple;
+      }
+      if (bloc == TypeBloc.L)
+      {
+        retour = Color.Orange;
+      }
+      if (bloc == TypeBloc.J)
+      {
+        retour = Color.Blue;
+      }
+      if (bloc == TypeBloc.S)
+      {
+        retour = Color.Green;
+      }
+      if (bloc == TypeBloc.Z)
+      {
+        retour = Color.Red;
+      }
+      return retour;
+    }
+    void GererCreationBlocDansJeu(TypeBloc bloc)
+    {
+      if (bloc == TypeBloc.Carre)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 1;
+        positionYRelative[2] = 0;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 0;
+        positionXRelative[1] = 0;
+        positionXRelative[2] = 1;
+        positionXRelative[3] = 1;
+      }
+      if (bloc == TypeBloc.Ligne)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 0;
+        positionYRelative[2] = 0;
+        positionYRelative[3] = 0;
+        positionXRelative[0] = 0;
+        positionXRelative[1] = 1;
+        positionXRelative[2] = 2;
+        positionXRelative[3] = 3;
+      }
+      if (bloc == TypeBloc.T)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 1;
+        positionYRelative[2] = 1;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 1;
+        positionXRelative[1] = 0;
+        positionXRelative[2] = 1;
+        positionXRelative[3] = 2;
+      }
+      if (bloc == TypeBloc.L)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 1;
+        positionYRelative[2] = 1;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 2;
+        positionXRelative[1] = 0;
+        positionXRelative[2] = 1;
+        positionXRelative[3] = 2;
+      }
+      if (bloc == TypeBloc.J)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 0;
+        positionYRelative[2] = 0;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 0;
+        positionXRelative[1] = 1;
+        positionXRelative[2] = 2;
+        positionXRelative[3] = 2;
+      }
+      if (bloc == TypeBloc.S)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 0;
+        positionYRelative[2] = 1;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 1;
+        positionXRelative[1] = 2;
+        positionXRelative[2] = 0;
+        positionXRelative[3] = 1;
+      }
+      if (bloc == TypeBloc.Z)
+      {
+        positionYRelative[0] = 0;
+        positionYRelative[1] = 0;
+        positionYRelative[2] = 1;
+        positionYRelative[3] = 1;
+        positionXRelative[0] = 0;
+        positionXRelative[1] = 1;
+        positionXRelative[2] = 1;
+        positionXRelative[3] = 2;
+      }
+      MettreAJourPositionBlocDansTabLogique(bloc);
+      Color blocCouleur = GererCouleurBloc(bloc);
+      AfficherBloc(blocCouleur);
+    }
+    TypeBloc GererTypeBlocs()
+    {
+      TypeBloc retour;
+      retour = TypeBloc.Carre; //(TypeBloc)rnd.Next(2,9);
+      return retour;
+    }
+    mouvement ObtenirTypeMouvement(ConsoleKey deplacement)
+    {
+      mouvement retour = mouvement.Rien;
+      if (deplacement == ConsoleKey.DownArrow)
+      {
+        retour = mouvement.Bas;
+      }
+      if (deplacement  == ConsoleKey.RightArrow)
+      {
+        retour = mouvement.Droite;
+      }
+      if (deplacement == ConsoleKey.LeftArrow)
+      {
+        retour = mouvement.Gauche;
+      }
+      if (deplacement == ConsoleKey.Z)
+      {
+        retour = mouvement.RotationAntihoraire;
+      }
+      if (deplacement == ConsoleKey.X)
+      {
+        retour = mouvement.RotationHoraire;
+      }
+      return retour;
+    }
     #region Code à développer
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -90,12 +279,25 @@ namespace TP3
     #endregion
 
   }
-
-
-
-
-
-
-
-
+  enum TypeBloc
+  {
+  None,
+  Gele,
+  Carre, 
+  Ligne, 
+  T, 
+  L, 
+  J, 
+  S, 
+  Z
+  }
+  enum mouvement
+  {
+  Rien,
+  RotationAntihoraire,
+  RotationHoraire,
+  Gauche,
+  Droite,
+  Bas
+  }
 }
